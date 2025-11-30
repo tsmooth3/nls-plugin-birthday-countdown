@@ -1,0 +1,17 @@
+{
+    "enabled": true,
+    "birthdays": [
+        {
+            "who": "Doug",
+            "birthday": "2005-05-03",
+            "image": "assets/images/bday0503.jpg",
+            "days_before_birthday": 1
+        },
+        {
+            "who": "Judy",
+            "birthday": "2000-08-03",
+            "image": "assets/images/bday0803.png",
+            "days_before_birthday": 102
+        }
+    ]
+}
