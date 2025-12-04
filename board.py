@@ -78,8 +78,43 @@ class Birthday(BoardBase):
                 self.birthday_today()
             else:
                 #today is not birthday
+                # if age is less than 1, then show how many months old they are
+                if self.age < 1:
+                    self.show_newborn_age()
                 if self.days_to_birthday < birthday["days_before_birthday"]:
                     self.birthday_countdown()
+
+    def show_newborn_age(self):
+        #show how many months old they are
+        self.matrix.clear()
+        self.matrix.draw_image((0,0), self.bday_image)
+        #calculate days old
+        #get todays date
+        today = datetime.date( datetime.datetime.now().year, datetime.datetime.now().month, datetime.datetime.now().day)
+        self.days_old = (today - self.birthday).days
+        #calculate weeks old
+        self.weeks_old = round(self.days_old / 7)
+        #calculate months old
+        self.months_old = round(self.days_old / 30.44)
+        #show how many months old they are
+        # if less than 1 week show days old, if less than 1 month show weeks old, if more than 1 month show months old
+        if self.weeks_old < 1:
+            self.matrix.draw_text( (67,2), f'{self.who}', font=self.font.medium, fill=(150,150,150) ) 
+            self.matrix.draw_text( (67,17), "You're", font=self.font.medium, fill=(150,150,150) ) 
+            self.matrix.draw_text( (67,32), f"{self.days_old}", font=self.font.medium, fill=(150,150,150) ) 
+            self.matrix.draw_text( (67,47), "days old!", font=self.font.medium, fill=(150,150,150) ) 
+        elif self.months_old < 1:
+            self.matrix.draw_text( (67,2), f'{self.who}', font=self.font.medium, fill=(150,150,150) ) 
+            self.matrix.draw_text( (67,17), "You're", font=self.font.medium, fill=(150,150,150) ) 
+            self.matrix.draw_text( (67,32), f"{self.weeks_old}", font=self.font.medium, fill=(150,150,150) ) 
+            self.matrix.draw_text( (67,47), "weeks old!", font=self.font.medium, fill=(150,150,150) ) 
+        else:
+            self.matrix.draw_text( (67,2), f'{self.who}', font=self.font.medium, fill=(150,150,150) ) 
+            self.matrix.draw_text( (67,17), "You're", font=self.font.medium, fill=(150,150,150) ) 
+            self.matrix.draw_text( (67,32), f"{self.months_old}", font=self.font.medium, fill=(150,150,150) ) 
+            self.matrix.draw_text( (67,47), "months old!", font=self.font.medium, fill=(150,150,150) ) 
+        self.matrix.render()
+        self.sleepEvent.wait(15)
 
     def calc_days_to_birthday(self):
         #get todays date
