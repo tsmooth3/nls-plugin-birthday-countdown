@@ -99,19 +99,19 @@ class Birthday(BoardBase):
         # if less than 1 week show days old, if less than 1 month show weeks old, if more than 1 month show months old
         if self.weeks_old < 1:
             self.matrix.draw_text( (67,2), f'{self.who}', font=self.font.medium, fill=(150,150,150) ) 
-            self.matrix.draw_text( (67,17), "You're", font=self.font.medium, fill=(150,150,150) ) 
-            self.matrix.draw_text( (67,32), f"{self.days_old}", font=self.font.medium, fill=(150,150,150) ) 
-            self.matrix.draw_text( (67,47), "days old!", font=self.font.medium, fill=(150,150,150) ) 
+            self.matrix.draw_text( (67,17), f"is {self.days_old}", font=self.font.medium, fill=(150,150,150) ) 
+            self.matrix.draw_text( (67,32), f"days", font=self.font.medium, fill=(150,150,150) ) 
+            self.matrix.draw_text( (67,47), "old!", font=self.font.medium, fill=(150,150,150) ) 
         elif self.months_old < 1:
             self.matrix.draw_text( (67,2), f'{self.who}', font=self.font.medium, fill=(150,150,150) ) 
-            self.matrix.draw_text( (67,17), "You're", font=self.font.medium, fill=(150,150,150) ) 
-            self.matrix.draw_text( (67,32), f"{self.weeks_old}", font=self.font.medium, fill=(150,150,150) ) 
-            self.matrix.draw_text( (67,47), "weeks old!", font=self.font.medium, fill=(150,150,150) ) 
+            self.matrix.draw_text( (67,17), f"is {self.weeks_old}", font=self.font.medium, fill=(150,150,150) ) 
+            self.matrix.draw_text( (67,32), f"weeks", font=self.font.medium, fill=(150,150,150) ) 
+            self.matrix.draw_text( (67,47), "old!", font=self.font.medium, fill=(150,150,150) ) 
         else:
             self.matrix.draw_text( (67,2), f'{self.who}', font=self.font.medium, fill=(150,150,150) ) 
-            self.matrix.draw_text( (67,17), "You're", font=self.font.medium, fill=(150,150,150) ) 
-            self.matrix.draw_text( (67,32), f"{self.months_old}", font=self.font.medium, fill=(150,150,150) ) 
-            self.matrix.draw_text( (67,47), "months old!", font=self.font.medium, fill=(150,150,150) ) 
+            self.matrix.draw_text( (67,17), f"is {self.months_old}", font=self.font.medium, fill=(150,150,150) ) 
+            self.matrix.draw_text( (67,32), f"months", font=self.font.medium, fill=(150,150,150) ) 
+            self.matrix.draw_text( (67,47), "old!", font=self.font.medium, fill=(150,150,150) ) 
         self.matrix.render()
         self.sleepEvent.wait(15)
 
