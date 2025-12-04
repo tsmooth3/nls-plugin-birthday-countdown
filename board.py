@@ -47,6 +47,9 @@ class Birthday(BoardBase):
 
         # custom variables
         self.days_to_next_birthday = 0
+        self.days_old = 0
+        self.weeks_old = 0
+        self.months_old = 0
         self.age = 0
 
         # import config from config.json
@@ -72,6 +75,10 @@ class Birthday(BoardBase):
             #self.days_to_birthday = 0
 
             debug.info(str(self.days_to_birthday) + " days")
+            debug.info(f"{self.who} : age    : {self.age} ")
+            debug.info(f"{self.who} : days   : {self.days_old} ")
+            debug.info(f"{self.who} : weeks  : {self.weeks_old} ")
+            debug.info(f"{self.who} : months : {self.months_old} ")
 
             if self.days_to_birthday < 1:
                 #today is Birthday
@@ -79,7 +86,7 @@ class Birthday(BoardBase):
             else:
                 #today is not birthday
                 # if age is less than 1, then show how many months old they are
-                if self.age < 1:
+                if self.days_old < 365:
                     self.show_newborn_age()
                 if self.days_to_birthday < birthday["days_before_birthday"]:
                     self.birthday_countdown()
