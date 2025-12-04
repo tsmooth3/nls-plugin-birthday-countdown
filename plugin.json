@@ -17,6 +17,7 @@
   },
 
   "preserve_files": [
-    "config.json"
+    "config.json",
+    "assets/images/bday*"
   ]
 }

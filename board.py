@@ -74,8 +74,8 @@ class Birthday(BoardBase):
             #for testing purposes
             #self.days_to_birthday = 0
 
-            debug.info(str(self.days_to_birthday) + " days")
-            debug.info(f"{self.who} : age    : {self.age} ")
+            debug.info(str(self.days_to_birthday) + " days to birthday")
+            debug.info(f"{self.who} : age    : {self.age}")
             debug.info(f"{self.who} : days   : {self.days_old} ")
             debug.info(f"{self.who} : weeks  : {self.weeks_old} ")
             debug.info(f"{self.who} : months : {self.months_old} ")
@@ -96,14 +96,6 @@ class Birthday(BoardBase):
         self.matrix.clear()
         self.matrix.draw_image((0,0), self.bday_image)
         #calculate days old
-        #get todays date
-        today = datetime.date( datetime.datetime.now().year, datetime.datetime.now().month, datetime.datetime.now().day)
-        self.days_old = (today - self.birthday).days
-        #calculate weeks old
-        self.weeks_old = round(self.days_old / 7)
-        #calculate months old
-        self.months_old = round(self.days_old / 30.44)
-        #show how many months old they are
         # if less than 1 week show days old, if less than 1 month show weeks old, if more than 1 month show months old
         if self.weeks_old < 1:
             self.matrix.draw_text( (67,2), f'{self.who}', font=self.font.medium, fill=(150,150,150) ) 
@@ -136,9 +128,12 @@ class Birthday(BoardBase):
         self.age = round((thebday - self.birthday).days / 365.2425)
         #calculate days to bday
         self.days_to_birthday = (thebday - today).days
-        self.days_old = (today - this_year_bday).days
-        if self.days_to_birthday > 363:
-            self.age = self.age - 1
+        # calculate total days since birth
+        self.days_old = round((today - self.birthday).days)
+        #calculate weeks old
+        self.weeks_old = round(self.days_old / 7)
+        #calculate months old
+        self.months_old = round(self.days_old / 30.44)
     
     def birthday_today(self) :
         #  it's Party Time!
