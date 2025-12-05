@@ -4,6 +4,7 @@ Birthday board module implementation.
 import datetime
 import json
 import logging
+import math
 import os
 
 from PIL import Image
@@ -97,7 +98,7 @@ class Birthday(BoardBase):
         self.matrix.draw_image((0,0), self.bday_image)
         #calculate days old
         # if less than 1 week show days old, if less than 1 month show weeks old, if more than 1 month show months old
-        if self.weeks_old < 1:
+        if self.days_old < 7:
             self.matrix.draw_text( (67,2), f'{self.who}', font=self.font.medium, fill=(150,150,150) ) 
             self.matrix.draw_text( (67,17), f"is {self.days_old}", font=self.font.medium, fill=(150,150,150) ) 
             self.matrix.draw_text( (67,32), f"days", font=self.font.medium, fill=(150,150,150) ) 
@@ -125,15 +126,15 @@ class Birthday(BoardBase):
         else:
             thebday = this_year_bday
 
-        self.age = round((thebday - self.birthday).days / 365.2425)
+        self.age = math.floor((thebday - self.birthday).days / 365.2425)
         #calculate days to bday
         self.days_to_birthday = (thebday - today).days
         # calculate total days since birth
-        self.days_old = round((today - self.birthday).days)
+        self.days_old = math.floor((today - self.birthday).days)
         #calculate weeks old
-        self.weeks_old = round(self.days_old / 7)
+        self.weeks_old = math.floor(self.days_old / 7)
         #calculate months old
-        self.months_old = round(self.days_old / 30.44)
+        self.months_old = math.floor(self.days_old / 30.44)
     
     def birthday_today(self) :
         #  it's Party Time!
