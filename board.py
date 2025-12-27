@@ -131,11 +131,14 @@ class Birthday(BoardBase):
         #calculate days to next bday
         self.days_to_birthday = (thebday - today).days
         # calculate total days since birth
-        self.days_old = today.day - self.birthday.day
+        self.days_old = (today - self.birthday).days
         #calculate weeks old
         self.weeks_old = math.floor(self.days_old / 7)
         #calculate months old
-        self.months_old = (today.year - self.birthday.year) * 12 + today.month - self.birthday.month 
+        self.months_old = (today.year - self.birthday.year) * 12 + today.month - self.birthday.month
+        if today.day < self.birthday.day:
+            self.months_old -= 1
+            
     
     def birthday_today(self) :
         #  it's Party Time!
