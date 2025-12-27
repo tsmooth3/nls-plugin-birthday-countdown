@@ -126,15 +126,16 @@ class Birthday(BoardBase):
         else:
             thebday = this_year_bday
 
-        self.age = math.floor((thebday - self.birthday).days / 365.2425)
-        #calculate days to bday
+        #calculate age they will be on their next birthday
+        self.age = thebday.year - self.birthday.year
+        #calculate days to next bday
         self.days_to_birthday = (thebday - today).days
         # calculate total days since birth
-        self.days_old = math.floor((today - self.birthday).days)
+        self.days_old = today.day - self.birthday.day
         #calculate weeks old
         self.weeks_old = math.floor(self.days_old / 7)
         #calculate months old
-        self.months_old = math.floor(self.days_old / 30.44)
+        self.months_old = (today.year - self.birthday.year) * 12 + today.month - self.birthday.month 
     
     def birthday_today(self) :
         #  it's Party Time!
